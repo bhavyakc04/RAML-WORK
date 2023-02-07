@@ -3,13 +3,14 @@ on:
   push:
     branches:
       - master # or the name of your main branch
-
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
       - uses: docker://sonarsource/sonar-scanner-cli:latest
